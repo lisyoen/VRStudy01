@@ -21,6 +21,11 @@ public class BulletMaker : MonoBehaviour
 #endif
         prefab_bullet_.SetActive(false);
     }
+
+	Vector3 NewPosition()
+	{
+		return new Vector3 (Random.Range (-5.0f, 5.0f), Random.Range (-1.0f, 4.0f), 100.0f);
+	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -32,7 +37,7 @@ public class BulletMaker : MonoBehaviour
 			spawn_time_ = 0.0f;
 			GameObject obj_bullet = GameObject.Instantiate (prefab_bullet_, this.transform) as GameObject;
             obj_bullet.SetActive(true);
-			obj_bullet.transform.localPosition = new Vector3 (Random.Range (-6.0f, 6.0f), Random.Range (-1.0f, 5.0f), 100.0f);
+			obj_bullet.transform.localPosition = NewPosition ();
 
             bullets_count_++;
 		}
@@ -53,7 +58,7 @@ public class BulletMaker : MonoBehaviour
 
             if (child_bullet.localPosition.z < -30.0f)
             {
-                child_bullet.transform.localPosition = new Vector3(Random.Range(-6.0f, 6.0f), Random.Range(-1.0f, 5.0f), 100.0f);
+				child_bullet.transform.localPosition = NewPosition ();
             }
 		}
 	}
